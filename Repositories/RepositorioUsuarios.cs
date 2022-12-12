@@ -4,16 +4,18 @@ using Microsoft.Data.SqlClient;
 
 namespace Blog.Repositories{
     public class RepositorioUsuarios{
-         public  IEnumerable<Usuario> Ler(){
 
+        private SqlConnection _coneccao = new SqlConnection("");
+         public  IEnumerable<Usuario> Ler()
+            
+            => _coneccao.GetAll<Usuario>();//listar todos os meus usuario na base de dados
 
-
-            using(var coneccao = new SqlConnection("")){
+         public  Usuario Ler(int id)
+            => _coneccao.Get<Usuario>(id);//listar todos os meus usuario na base de dados
                 
-                return coneccao.GetAll<Usuario>();//listar todos os meus usuario na base de dados
+         public  void Cadastrar(Usuario usuario)
+           => _coneccao.Insert<Usuario>(usuario);//listar todos os meus usuario na base de dados
                 
-            }
-
-        }
+        
     }
 }
