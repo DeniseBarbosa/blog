@@ -18,8 +18,25 @@ namespace Blog.Repositories{
             => _conexao.Get<Usuario>(id);//listar todos os meus usuario na base de dados
                 
          public  void Cadastrar(Usuario usuario)
-           => _conexao.Insert<Usuario>(usuario);//listar todos os meus usuario na base de dados
-                
+         {    usuario.Id = 0;
+            _conexao.Insert<Usuario>(usuario);
+         }
+            
+         public  void Atualizar(Usuario usuario)
+           {   if (usuario.Id != 0)
+              _conexao.Update<Usuario>(usuario);
+           }
+         
+          public  void Deletar(Usuario usuario)
+           {   if (usuario.Id != 0)
+              _conexao.Delete<Usuario>(usuario);
+           }
         
+        public  void Deletar(int id )
+           {   if (id != 0)
+               return;
+               var usuario = _conexao.Get<Usuario>(id);
+              _conexao.Delete<Usuario>(usuario);
+           }
     }
 }

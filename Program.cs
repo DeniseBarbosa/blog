@@ -28,6 +28,8 @@ namespace Blog{
 
         var repositorio = new RepositorioUsuarios(conexao);
         var usuarios =  repositorio.Ler();
+
+        
         foreach(var usuario in usuarios){
           Console.WriteLine(usuario.Nome);
         }
