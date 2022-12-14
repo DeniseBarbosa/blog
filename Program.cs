@@ -15,7 +15,8 @@ namespace Blog{
             var conexao = new SqlConnection(stringConexao);
             conexao.Open();
             LerUsuarios(conexao);
-            LerFuncao(conexao);
+            LerFuncaos(conexao);
+            LerTags(conexao);
             //LerUsuario();
             //CadastrarUsuario();
             //AtualizarUsuario();
@@ -26,22 +27,37 @@ namespace Blog{
        
      public static void LerUsuarios( SqlConnection conexao){
 
-        var repositorio = new RepositorioUsuarios(conexao);
-        var usuarios =  repositorio.Ler();
+        var repositorio = new Repositorio<Usuario>(conexao);
+        var items =  repositorio.Ler();
 
         
-        foreach(var usuario in usuarios){
-          Console.WriteLine(usuario.Nome);
+        foreach(var item in items){
+          Console.WriteLine(item.Nome);
         }
         
         }
 
-     public static void LerFuncao( SqlConnection conexao){
+        public static void LerFuncaos( SqlConnection conexao){
 
-        var repositorio = new RepositorioFuncao(conexao);
-        var funcaos =  repositorio.Ler();
-        foreach(var funcao in funcaos){
-          Console.WriteLine(funcao.Nome);
+        var repositorio = new Repositorio<Funcao>(conexao);
+        var items =  repositorio.Ler();
+
+        
+        foreach(var item in items){
+          Console.WriteLine(item.Nome);
+        }
+        
+        }
+
+
+        public static void LerTags( SqlConnection conexao){
+
+        var repositorio = new Repositorio<Tag>(conexao);
+        var items =  repositorio.Ler();
+
+        
+        foreach(var item in items){
+          Console.WriteLine(item.Nome);
         }
         
         }
